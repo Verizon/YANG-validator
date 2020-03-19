@@ -1,0 +1,553 @@
+module "samsung-cpe-perfdata-udm" {
+    namespace "http://enmv.verizon.com/module" ;
+    prefix "Vdm5G";
+
+    organization 
+        "Verizon";
+
+    contact 
+        "eclipse.developers@verizon.com";
+
+    description 
+        "Samsung Verizon CPE Performance Data in Unified Data Model";
+
+        
+    revision 2018-08-15 {
+       reference "http://www.yangvalidator.com/validator";
+       description "Modified to be compatible with pyang, yanglint and confdc";
+    }
+    revision 2018-08-14 {
+        reference "https://github.com/freenetconf/yang-creator";
+        description "This YANG Model created with yang-creator.";
+    }
+
+
+    typedef cpe-date-and-time {
+        type string {
+            pattern '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'
+                  + '(Z|[\+\-]\d{2}:\d{2})';
+        }
+        description
+          "Samsung presents as yyyy-mm-ddTHH:MI:SS+00:00";
+    }
+    grouping indexes {
+        leaf indexId {
+            type uint16 {
+                range "0..5";
+            }
+            description "Positional Index ID, unique";
+        }
+        leaf indexName {
+            type string;
+            description 
+              "Index Name depends on indexID and familyType, 
+               typical CPE ID, Cell ID, Interface ID, CC ID, MCS ID";
+        }
+        leaf indexValue {
+            type string;
+            description 
+              "The value associated with this indexId and familyType.";
+        }
+    }
+    grouping payload {
+        leaf typeId {
+            type uint16;
+            description 
+               "Positional dependency, determines the data type contained for this record.";
+        }
+        leaf typeName {
+            type string;
+            description 
+              "typeName depends on typeId and FamilyType, typical RxTotalPackets, DBler_Min, etc";
+        }
+        leaf typeValue {
+            type string;
+            description 
+              "The value associated to this typeId and familyType." ;
+        }
+        leaf valueType {
+            type string;
+            description 
+              "DSM Output Format: typical float, unsigned int, int";
+        }
+        leaf valueUnit {
+          type string;
+          description 
+            "Units associated with typeValue as specified: typical %, degC, count, etc.";
+        }
+    }
+    container perfdata {
+        leaf neId {
+            type string;
+            description 
+              "the Network Element ID";
+        }
+        leaf neType {
+            type string;
+            description 
+              "Network Element Type for this data point, typical cpefama";
+        }
+        leaf neVersion {
+            type string;
+            description 
+              "the Network Element Version";
+        }
+        leaf familyId {
+            type uint16;
+            description 
+              "key identifier for the data type, typical 601, 702, etc.
+              
+            familyId: annotatedFamilyId
+              601: CPE_RESOURCE
+                   This section provides statistics on the CPU, memory and disk resources used by internal 
+                   applications in the system.
+                   - CPU usage: Average, maximum and minimum CPU usage in percentage (%).
+                   - Memory usage: Average, maximum and minimum DRAM usage in percentage (%).
+                   - Disk usage: Average, maximum and minimum disk usage in percentage (%).
+
+                typeID typeName
+                   0  ControlCpuUsage  The average of CPU usage rate.
+                        This counter collects CPU usage and reports them to PM at sample intervals.
+                   1  MemoryUsage      The average of Memory usage rate.
+                        This counter collects memory usage and reports them to PM at sample intervals.
+                   2  DiskUsage        The average of Disk usage rate.
+                        This counter collects disk usage and reports them to PM at sample intervals.
+                   3  Temperature      The average of temperature(Degree Celsius)
+                        This counter collects temperature data and reports them to PM at sample intervals.
+
+            familyId: annotatedFamilyId
+              702: ETHERNET
+                   This section provides statistics on the ethernet interface(LAN side) packet counts.
+
+                typeID typeName
+                   0  RxTotalPackets
+                        The total number of bytes received on the interface
+                   1  Rx Multicast Packets
+                        The total number of received packets, delivered by this layer to a higher layer, 
+                        which were addressed to a multicast address at this layer.
+                        This counter increases when multicast packet is received during sample intervals.
+                   2  Rx Discard Packets
+                        The total number of inbound packets which were chosen to be discarded even though no 
+                        errors had been detected to prevent their being delivered.
+                        This counter increases when it is discarded at RX driver during sample intervals.
+                   3  Rx Error Packets
+                        The total number of inbound packets that contained errors preventing them from being 
+                        delivered to a higher-layer protocol.
+                        This counter increases when error packet is received during sample intervals.
+                   4  Tx Total Packets
+                        The total number of packets transmitted out of the interface.
+                   5  Tx Discard Packets
+                        The total number of outbound packets which were chosen to be discarded even though no 
+                        errors had been detected to prevent their being transmitted.
+                        One possible reason for discarding such a packet could be to free up buffer space.
+                        This counter increases when it is discarded at TX driver during sample intervals.
+                   6  Tx Error Packets
+                        The total number of outbound packets that could not be transmitted because of errors.
+                        This counter increases when TX packet has error during sample intervals.
+
+            familyId: annotatedFamilyId
+              703: 5G Network
+                   This section provides statistics on the 5G interface(WAN side) packet counts.
+
+                typeID typeName
+                   0  RxTotalPackets
+                        The total number of bytes received on the interface	
+                   1  Rx Multicast Packets
+                        The total number of received packets, delivered by this layer to a higher layer, 
+                        which were addressed to a multicast address at this layer.
+                        This counter increases when multicast packet is received during sample intervals.
+                   2  Rx Discard Packets
+                        The total number of inbound packets which were chosen to be discarded even though no 
+                        errors had been detected to prevent their being delivered.
+                        This counter increases when it is discarded at RX driver during sample intervals.
+                   3  Rx Error Packets
+                        The total number of inbound packets that contained errors preventing them from being 
+                        delivered to a higher-layer protocol.
+                        This counter increases when error packet is received during sample intervals.
+                   4  Tx Total Packets
+                        The total number of packets transmitted out of the interface.
+                   5  Tx Discard Packets
+                        The total number of outbound packets which were chosen to be discarded even though no 
+                        errors had been detected to prevent their being transmitted.
+                        One possible reason for discarding such a packet could be to free up buffer space.
+                        This counter increases when it is discarded at TX driver during sample intervals.
+                   6  Tx Error Packets
+                        The total number of outbound packets that could not be transmitted because of errors.
+                        This counter increases when TX packet has error during sample intervals.
+
+            familyId: annotatedFamilyId
+              704: THROUGHPUT
+                   This section provides statistics on the min, max, average DL and UL throughput 
+                   during the specified period.
+
+                typeID typeName
+                   0  Min DL T-Put  The minimum value of downlink throughput during the period.
+                   1  Max DL T-Put  The maximum value of downlink throughput during the period.
+                   2  Avg DL T-Put  The average value of downlink throughput during the period.
+                   3  Min UL T-Put  The minimum value of uplink throughput during the period.
+                   4  Max UL T-Put  The maximum value of uplink throughput during the period.
+                   5  Avg UL T-Put  The average value of uplink throughput during the period.
+
+            familyId: annotatedFamilyId
+              901: BLER
+                   This section provides statistics on the BLER(Block Error Rate). BLER is the failure 
+                   rate for the initial transmission and is a ratio of the number of times the first 
+                   re-transmission was carried out to the number of times the initial transmission was 
+                   carried out.
+
+                   Downlink BLER is calculated value of PDSCH BLER for the initial transmission during 
+                   the collection interval. Uplink BLER is calculated value of PUSCH BLER for the initial 
+                   transmission during the collection interval.
+
+                typeID typeName
+                   0  DlBler_Min  The minimum value of downlink BLER data collected during the period.
+                   1  DlBler_Max  The maximum value of downlink BLER data collected during the period.
+                   2  DlBler_Avg  The average value of downlink BLER data collected during the period.
+                   3  UlBler_Min  The minimum value of uplink BLER data collected during the period.
+                   4  UlBler_Max  The maximum value of uplink BLER data collected during the period.
+                   5  UlBler_Avg  The average value of uplink BLER data collected during the period.
+
+            familyId: annotatedFamilyId
+              902: BRSRP
+                   This section provides statistics on the BRSRP(Beam Reference Signal Received Power).
+
+                typeID typeName
+                   0  Brsrp_Min  The minimum value of BRSRP data collected during the period.
+                   1  Brsrp_Max  The maximum value of BRSRP data collected during the period.
+                   2  Brsrp_Avg  The average value of BRSRP data collected during the period.
+
+            familyId: annotatedFamilyId
+              903: KPI BRSRP  
+                   This section provides KPI statistics on the BRSRP(Beam Reference Signal Received Power).
+
+                typeID typeName
+                   0  BRSRP_5   The 5th percentile of BRSRP data in increasing order
+                   1  BRSRP_25  The 25th percentile of BRSRP data in increasing order
+                   2  BRSRP_50  The 50th percentile of BRSRP data in increasing order
+                   3  BRSRP_75  The 75th percentile of BRSRP data in increasing order
+                   4  BRSRP_95  The 95th percentile of BRSRP data in increasing order
+
+            familyId: annotatedFamilyId
+              904: SINR
+                   This section provides statistics on the SINR(Signal to Interference plus Noise Ratio).
+
+                typeID typeName
+                   0  DlSinr_Min  The minimum value of downlink SINR data collected during the period.
+                   1  DlSinr_Max  The maximum value of downlink SINR data collected during the period.
+                   2  DlSinr_Avg  The average value of downlink SINR data collected during the period.
+
+            familyId: annotatedFamilyId
+              905: KPI SINR
+                   This section provides KPI statistics on the SINR(Signal to Interference plus Noise Ratio).
+
+                typeID typeName
+                   0  SINR_5   The 5th percentile of SINR data in increasing order
+                   1  SINR_25  The 25th percentile of SINR data in increasing order
+                   2  SINR_50  The 50th percentile of SINR data in increasing order
+                   3  SINR_75  The 75th percentile of SINR data in increasing order
+                   4  SINR_95  The 95th percentile of SINR data in increasing order
+
+            familyId: annotatedFamilyId
+              906: KPI_PATH_LOSS
+                   This section provides KPI statistics on the path loss.
+
+                typeID typeName
+                   0  DlPathLoss_5   The 5th percentile of downlink path loss data in increasing order
+                   1  DlPathLoss_25  The 25th percentile of downlink path loss data in increasing order
+                   2  DlPathLoss_50  The 50th percentile of downlink path loss data in increasing order
+                   3  DlPathLoss_75  The 75th percentile of downlink path loss data in increasing order
+                   4  DlPathLoss_95  The 95th percentile of downlink path loss data in increasing order
+
+            familyId: annotatedFamilyId
+              907: POWER
+                   This section provides statistics on the 5G power data.
+
+                typeID typeName
+                   0  PuschTxPower_Avg
+                        The average value of PUSCH TX power data collected during the period.
+
+            familyId: annotatedFamilyId
+              910: RLF
+                   This section provides statistics on the RLF(Radio Link Failure).
+
+                   Various cases of RLF conditions based on Sec 5.3.11.3 of V5G_331 i.e. 
+                   (1). Indication from RLC that the maximum number of retransmissions has been reached, 
+                   (2). T310 expiry (after N310 out of sync indications have received from PHY) or 
+                   (3). Random access problem indication from MAC or 
+                   (4). Timing Alignment Timer expiration 
+                   (5) T312 expiry.
+
+                typeID typeName
+                   0  RLF_Total
+                        The total number of RLF events.
+                        This counter increases when RRC received RLF message(out_of_sync, MaxRetrans, and Rach_Fail) 
+                        during the period.
+                   1  RLF_OutOfSync
+                        The number of RLF events due to out of sync.
+                        This counter increases when RRC received out_of_sync message during the period.
+                   2  RLF_MaxRetrans
+                        The number of RLF events due to max retransmission.
+                        This counter increases when RRC received MaxRetrans message during the period.
+                   3  RLF_RachFail	The number of RLF events due to RACH failure.
+                        This counter increases when RRC received Rach_Fail message during the period.
+                   4  RLF_Other
+                        The number of RLF events due to the other causes.
+                        This counter increases when RRC received other RLF message during the period.
+                   5  CallDrop_RLF
+                        The number of times RRC connection was dropped due to RLF.
+                        In otherword, call drops due to RRC Re-establishment failure.
+                        This counter increases when RRC failed in reestablishment procedure after RRC 
+                        received RLF message during the period.
+
+            familyId: annotatedFamilyId
+              911: BEAM
+                   This section provides statistics on the 5G beam.
+
+                typeID typeName
+                   0  BeamChangeBsiAttempt
+                        The number of times beam switch process was attempted. An attempt is counted either when 
+                        a) BSI report is sent (if it triggered via xPDCCH order and beam switch indication 
+                           bit was on and if there is new stronger beam compared to serving beam) or 
+                        b) when UE receives BRS Beam Change Indication Mac CE (if BSI was triggered via xPDCCH 
+                           order but without beam switch indication bit and using parameter 
+                           BRSRP_BEAM_CHANGE_MARGIN_BSI in AU) or 
+                        c) when UE sends an SR or RACH for UE initiated event based BSI based on beamTriggeringRSRPoffset
+                      Trigger condition indicates the trigger for BSI reporting. For example, 'UE initiated via SR', 
+                      'UE initiated via RACH' or 'eNB triggered via xPDCCH order (with or without change indication)' 
+                      and so on.
+                      This counter increases whenever UE tries to change beam triggered by beam switch indication in 
+                      the BSI request from 5G NB. 
+                   1  BeamChangeBsiSuccess
+                        The number of times beam switch process was successful
+                        This counter increases whenever beam change process was successful.
+                   2  BeamChangeBsiFail
+                        The number of times beam switch process failed. The following failure conditions should be 
+                        captured as causes.
+                        For UE triggered BSI reporting
+                        1) SR fails(that is, no uplink grant)
+                        2) RACH fails
+                        3) CPE fails to receive BSI Beam Switch Indication after sending BSI
+                        4) CPE fails to acquire new beam after receiving beam switch indication for xPDCCH triggered 
+                           BSI report 
+                        5) CPE fails to acquire new beam after receiving beam switch indication
+                        This counter increases whenever beam change process failed.
+                   3  InitialBeamAcquisitionTime
+                        Initial access performance. The time interval from the cell selection request time to cell 
+                        selection confirm time.
+                        Positive number or -1 representing no beam acquisition
+
+            familyId: annotatedFamilyId
+              912: RACH
+                   This section provides statistics on the RACH(Random Access CHannel).
+
+                typeID typeName
+                   0  RachFailureCount
+                        The total number of RACH failure(retry) during the period.
+                        If Random Access fails due to Random Access Response Timeout, Contention Resolution Timeout or 
+                        Contention Resolution Fail in UE, RachFailureCount will be counted.
+                        This counter increases when Random Access fails due to Random Access Response Timeout, 
+                        Contention Resolution Timeout or Contention Resolution Fail in UE.
+                   1  RachAttemptCount
+                        The total number of RACH attempt during the period.
+                        Attempt count for success of Random Access Procedure. Random Access Procedure can be retried 
+                        for RACH Procedure Success until receiving stop message from RRC layer.
+                        This counter increases whenever Random Access Procedure is attempted.
+                   2  RachAttemptCountAvg
+                        The average number of RACH attempt for Success of Random Access Procedure during the period.
+                        This is calculated as the average of RachAttemptCount data during the period.
+                   3  TimingAdvanceRar
+                        Timing advance value received in the last RAR message received in the reporting window.                   
+
+            familyId: annotatedFamilyId
+              913: SERVICE
+                   This section provides statistics on the 5G service.
+
+                typeID typeName
+                   0  RrcConnectionTime
+                        The RRC connection time. The total time while the RRC connection is maintained.
+                   1  RrcConnectionComplete
+                        The number of RRC Connection Complete
+                        This counter increases when RRC received RRCConnectionComplete message during the period.
+                   2  RrcConnectionRequest
+                        The number of RRC Connection Request
+                        This counter increases when RRC received RRCConnectionRequest message during the period.
+
+            familyId: annotatedFamilyId
+              914: MAC_THROUGHPUT
+                   This section provides statistics on the 5G MAC throughput.
+                   
+                   It is critical to support effective throughput. Effective throughput provides better 
+                   throughput numbers to operator based on actual TTI utilization.
+
+                typeID typeName
+                   0  PDSCHTput_Tot  
+                        The total xPDSCH packet bytes 
+                        This counter increases when xPDSCH packet is transmitted.
+                   1  PDSCHTput_Min	
+                        The minimum xPDSCH packet bytes per sec (kbps, k=1000)
+                        This is updated with the minimum xPDSCH packet bytes per sec during the period.
+                   2  PDSCHTput_Max	
+                        The peak xPDSCH packet bytes per sec (kbps, k=1000)
+                        This is updated with the maximum xPDSCH packet bytes per sec during the period.
+                   3  PDSCHTput_Avg	
+                        The average xPDSCH throughput (kbps, k=1000)
+                        This is calculated as the average of xPDSCH throughput data during the period.
+                   4  PUSCHTput_Tot	
+                        The total xPUSCH packet bytes
+                        This counter increases when xPUSCH packet is transmitted.
+                   5  PUSCHTput_Min
+                        The minimum xPUSCH packet bytes per sec (kbps, k=1000)
+                        This is updated with the minimum xPUSCH packet bytes per sec during the period.
+                   6  PUSCHTput_Max
+                        The peak xPUSCH packet bytes per sec (kbps, k=1000)
+                        This is updated with the maximum xPUSCH packet bytes per sec during the period.
+                   7  PUSCHTput_Avg	
+                        The average xPUSCH throughput (kbps, k=1000)
+                        This is calculated as the average of xPUSCH throughput data during the period.
+                   8  PDSCH_EffectiveTput_Tot
+                        The total amount of PDSCH bits received over the total number of allocated downlink TTIs.
+                        This counter increases when xPDSCH packet is transmitted over the allocated downlink TTIs.
+                   9  PDSCH_EffectiveTput_Min 
+                        The minimum xPDSCH effective throughput per sec (kbps, k=1000)
+                        This is updated with the minimum xPDSCH effective throughput per sec during the period.
+                   10  PDSCH_EffectiveTput_Max
+                         The maximum xPDSCH effective throughput per sec (kbps, k=1000)
+                         This is updated with the maximum xPDSCH effective throughput per sec during the period.
+                   11  PDSCH_EffectiveTput_Avg
+                         The average xPDSCH effective throughput per sec (kbps, k=1000)
+                         This is calculated as the average of xPDSCH effective throughput data during the period.
+                   12  PUSCH_EffectiveTput_Tot
+                         Total amount of PUSCH bits transmitted over the total number of allocated uplink TTIs.
+                         This counter increases when xPUSCH packet is transmitted over the allocated downlink TTIs.
+                   13  PUSCH_EffectiveTput_Min
+                         The minimum xPUSCH effective throughput per sec (kbps, k=1000)
+                         This is updated with the minimum xPUSCH effective throughput per sec during the period.
+                   14  PUSCH_EffectiveTput_Max
+                         The maximum xPUSCH effective throughput per sec (kbps, k=1000)
+                         This is updated with the maximum xPUSCH effective throughput per sec during the period.
+                   15  PUSCH_EffectiveTput_Avg
+                         The average xPUSCH effective throughput per sec (kbps, k=1000)
+                         This is calculated as the average of xPUSCH effective throughput data during the period.
+              
+            familyId: annotatedFamilyId
+              915: RLC_THROUGHPUT
+                   This section provides statistics on the 5G RLC throughput.
+
+                typeID typeName
+                   0  RlcDlTput_Tot
+                        The total downlink packet bytes
+                        This counter increases when RLC downlink packet is transmitted.
+                   1  RlcDlTput_Min
+                        The minimum downlink packet bytes in RLC sublayer per sec (kbps, k=1000)
+                        This is updated with the minimum RLC downlink throughput data during the period.
+                   2  RlcDlTput_Max
+                        The maximum downlink packet bytes in RLC sublayer per sec (kbps, k=1000)
+                        This is updated with the maximum RLC downlink throughput data during the period.
+                   3  RlcDlTput_Avg
+                        The average downlink packet bytes in RLC sublayer per sec (kbps, k=1000)
+                        This is calculated as the average of RLC downlink throughput data during the period.
+                   4  RlcUlTput_Tot
+                        The total uplink packet bytes	
+                        This counter increases when RLC uplink packet is transmitted.
+                   5  RlcUlTput_Min
+                        The minimum uplink packet bytes in RLC sublayer per sec (kbps, k=1000)  
+                        This is updated with the minimum RLC uplink throughput data during the period.
+                   6  RlcUlTput_Max
+                        The maximum uplink packet bytes in RLC sublayer per sec (kbps, k=1000)  
+                        This is updated with the maximum RLC uplink throughput data during the period.
+                   7  RlcUlTput_Avg
+                        The average uplink packet bytes in RLC sublayer per sec (kbps, k=1000)  
+                        This is calculated as the average of RLC uplink throughput data during the period.
+
+            familyId: annotatedFamilyId
+              916: AMC
+                   This section provides statistics on the 5G AMC(Adaptive Modulation and Coding).
+
+                typeID typeName
+                   0  DLTransmittedCQI_wAvg
+                        The weighted average value of DLTransmittedCQI0 ~ DLTransmittedCQ15.
+                        This is calculated as 
+                        (0 *DLTransmittedCQI0 + 1* DLTransmittedCQI1 +….+15*DLTransmittedCQI15) / 
+                        (DLTransmittedCQI0 + DLTransmittedCQI1 +..+DLTransmittedCQI15)
+                        CQI is measured for every CSI report and is used as raw data of this calculation.
+                   1  DLTransmittedRI_wAvg
+                        The weighted average value of RI. This is calculated as 
+                        (1*DLTransmittedRI0 + 2* DLTransmittedRI1) / 
+                        (DLTransmittedRI0 +DLTransmittedRI1)
+                        RI is measured for every CSI report and is used as raw data of this calculation.
+                   2  DLReceivedLayer1
+                        The number of PDSCH assignments for the layer1
+                        This counter increases for every PDSCH assignment for the layer1.
+                   3  DLReceivedLayer2
+                        The number of PDSCH assignments for the layer2
+                        This counter increases for every PDSCH assignment for the layer2.
+                   4  ULTransmittedLayer1
+                        The number of PUSCH assignments for the layer1
+                        This counter increases for every PUSCH assignment for the layer1.
+                   5  ULTransmittedLayer2
+                      The number of PUSCH assignments for the layer2
+                      This counter increases for every PUSCH assignment for the layer2.
+
+            familyId: annotatedFamilyId
+              917: SCHEDULER
+                   This section provides statistics on the 5G scheduler.
+
+                typeID typeName
+                   0  PrbDl_Avg
+                        The usage rate (percentage) of the Physical Resource Block on the downlink 
+                        PDSCH among the total Physical Resource Block
+                   1  PrbUl_Avg
+                        The usage rate (percentage) of the Physical Resource Block on the uplink 
+                        PUSCH among the total Physical Resource Block
+
+            familyId: annotatedFamilyId
+              918: MCS
+                   This section provides statistics on the 5G MCS(Modulation Coding Scheme).
+
+                typeID typeName
+                   0  DLTransmitMCS	
+                        The total number of times PDSCH was transmitted at MCS0~14
+                        This counter increases whenever PDSCH was transmitted at each MCS.
+                   1  ULTransmitMCS
+                        The total number of times PUSCH was transmitted at MCS0~14
+                        This counter increases whenever PUSCH was transmitted at each MCS.
+
+            familyId: annotatedFamilyId
+              919: HANDOVER
+                   This section provides statistics on the 5G handover.
+
+                typeID typeName
+                   0  UeBasedHoAttempt
+                        Handover attempt count
+                        Note: For UE based handover start of attempt should be considered when A3 event 
+                        is reported by UE.	
+                        This counter increases when RRM sent HO_ind message to RRC during the period.
+                   1  UeBasedHoSuccess
+                        Handover success count	
+                        This counter increases when RRC attached successfully during the period.
+              ";
+        }
+        leaf annotatedFamilyId {
+            type string;
+            description 
+              "Description of the familyId, typcical: CPE_RESOURCE, ETHERNET, etc.";
+        }
+        leaf eventTime {
+            type cpe-date-and-time;
+            description 
+            "event time as reported by samsung, format yyyy-mm-ddTHH:MI:SS+HH:MI";
+        }
+        list indexData {
+          key indexId;
+          uses indexes;
+          description 
+            "List of indexes associated with this data point.";
+        }
+        list payloadData {
+          key typeId;
+          uses payload;
+          description 
+            "the payload data associated with this data point";
+        }
+    }
+}

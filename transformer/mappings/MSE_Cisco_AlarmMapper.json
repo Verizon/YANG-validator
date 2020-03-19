@@ -1,0 +1,79 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "alarms": {
+        "tag": "dummy",
+        "type": "grouping",
+        "grouping": {
+            "alarm": {
+                "tag": "data_json",
+                "type": "list",
+                "key": "id",
+                "keys": {
+                    "id": {
+                        "tag": "keys->message-id",
+                        "type": "string"
+                    },
+                    "state": {
+                        "tag": "attributesx",
+                        "type": "grouping",
+                        "grouping": {
+                            "id": {
+                                "tag": "keys->message-id",
+                                "type": "string"
+                            },
+                            "time-created-str": {
+                                "tag": "content->time-of-day",
+                                "type": "string"
+                            },
+                            "class": {
+                                "tag": "content->category",
+                                "type": "string"
+                            },
+                            "text": {
+                                "tag": "content->text",
+                                "type": "string"
+                            },
+                            "ServiceEffect": {
+                                "tag": "attributes->service-affection",
+                                "type": "string"
+                            },
+                            "resource": {
+                                "tag": "content->text",
+                                "type": "string",
+                                "convert": "re",
+				"regex": [".*: Interface (.*),.*",".*:DECLARE :(.*):.*"]
+                            },
+                            "severity": {
+                                "tag": "content->severity",
+                                "type": "string",
+				"convert": "convert1"
+                            },
+                            "IPAddress": {
+                                "tag": "attributes->ip-address",
+                                "type": "string"
+                            },
+                            "deviceName": {
+                                "tag": "ROOT->node_id_str",
+                                "type": "string"
+                            },
+                            "MACAddress": {
+                                "tag": "attributes->mac-address",
+                                "type": "string"
+                            },
+                            "rawAlarmText": {
+                                "tag": "mac-address",
+                                "type": "rawAlarmText"
+                            },
+                            "metaData": {
+                                "tag": "type",
+                                "type": "metaData"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree 'ietf-inet-types@2013-07-15.yang'  'ietf-network@2018-02-26.yang'  'ietf-network-topology@2018-02-26.yang' 
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree  vz-udm-platform.yang  openconfig-platform.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree vz-udm-alarm.model.ut.yang  openconfig-system.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang --plugindir /tmp/AppData/Roaming/Python/Python36/site-packages/pyangbind/plugin/ -f pybind  vz-udm-platform.yang  openconfig-platform.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang --plugindir /tmp/AppData/Roaming/Python/Python36/site-packages/pyangbind/plugin/ -f pybind  vz-udm-alarm.model.ut.yang  openconfig-system.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree  vz-udm-platform-equipment-model.yang openconfig-platform.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree  vz-udm-platform-equipment-holder.yang openconfig-platform.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang -f tree  vz-udm-platform-equipment-holder.yang  vz-udm-platform-equipment-model.yang openconfig-platform.yang
+python /tmp/AppData/Roaming/Python/Python36/Scripts/pyang --plugindir /tmp/AppData/Roaming/Python/Python36/site-packages/pyangbind/plugin/ -f pybind  vz-udm-platform-equipment-holder.yang  vz-udm-platform-equipment-model.yang openconfig-platform.yang

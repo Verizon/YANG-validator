@@ -1,0 +1,105 @@
+// module name
+module bnc-filtered-alarms {
+
+    // boilerplate
+    yang-version "1";
+    namespace "https://rmt.verizon.com/bnc-filtered-alarms";
+
+    prefix "bnc-filtered-alarms";
+
+    // attributes
+    grouping alarmAttributes {
+        leaf id {
+            type string;
+        }
+        leaf alarmId {
+            type string;
+        }
+        leaf nodeId {
+            type string;
+        }
+        leaf raAlarmId {
+            type string;
+        }
+        leaf nodeType {
+            type string;
+        }
+        leaf state {
+            type string;
+        }
+        leaf resourceId {
+            type string;
+        }
+        leaf nativeConditionType {
+            type string;
+        }
+        leaf conditionSeverity {
+            type string;
+        }
+        leaf serviceAffecting {
+            type string;
+        }
+        leaf manualClearable {
+            type string;
+        }
+        leaf additionalText {
+            type string;
+        }
+        leaf firstRaiseTime {
+            type string;
+        }
+        leaf lastRaiseTime {
+            type string;
+        }
+        leaf numberOfOccurrences {
+            type uint32;
+        }
+        leaf acknowledgeState {
+            type string;
+        }
+        leaf deviceId {
+            type string;
+        }
+        leaf deviceName {
+            type string;
+        }
+        leaf deviceLongName {
+            type string;
+        }
+        leaf ipAddress {
+            type string;
+        }
+        leaf macAddress {
+            type string;
+        }
+        leaf cardType {
+            type string;
+        }
+        leaf fic {
+            type string;
+        }
+        leaf-list partition {
+            type string;
+        }
+    }
+
+    grouping alarmData {
+        leaf id {
+            type string;
+        }
+        leaf type {
+            type string;
+        }
+        container attributes {
+          uses alarmAttributes;
+        }
+    }
+
+    container bncFilteredAlarm {
+      list alarm {
+        key "id";
+
+        uses alarmData;
+      }
+    }    
+}

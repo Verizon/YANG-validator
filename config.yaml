@@ -1,0 +1,3 @@
+max_workers: 100
+prefetch_count: 100
+AMQP_URI: amqp://guest:guest@10.134.214.149:5672

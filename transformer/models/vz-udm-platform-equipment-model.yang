@@ -1,0 +1,347 @@
+module vz-udm-platform-equipment-model {
+	namespace "urn:onf:params:xml:ns:yang:vz-udm-platform";
+	prefix vz;
+
+	import openconfig-platform {
+		prefix "oc-platform";
+	}
+	organization "Verizon";
+	contact "WG Web: <mailto:xyz.jk.com>";
+	description "Augment to openconfig platform module";
+	revision 2019-04-23 {
+		description "Initial version";
+		reference "Initial Release";
+	}
+
+        grouping spatialproperties
+	{
+	      leaf weight
+	      {
+	          type string;
+		  description "Weight";
+	      }
+	      leaf height
+	      {
+	          type string;
+		  description "Height";
+	      }
+	      leaf width
+	      {
+	          type string;
+		  description "Width";
+	      }
+	      leaf depth
+	      {
+	          type string;
+		  description "Depth";
+	      }
+	      leaf dimtobase
+	      {
+	          type string;
+		  description "Dim to Base";
+	      }
+	      leaf dimtoleft
+	      {
+	          type string;
+		  description "Dim to Left";
+	      }
+	      leaf dimtofront
+	      {
+	          type string;
+		  description "Dim to Front";
+	      }
+	      leaf dimtotop
+	      {
+	          type string;
+		  description "Dim to Top";
+	      }
+	      leaf subclass
+	      {
+	          type string;
+		  description "Subclass";
+	      }
+              leaf trafficBearing 
+	      {
+                  type string;
+                  description
+                    "Traffic Bearing (Y/N)";
+              }
+
+	}
+	grouping portdetails
+	{  
+		container ports {
+			description
+				"ports on the component";
+
+			list port {
+				key "physicalportname";
+				description
+					"List of ports";
+
+				leaf physicalportname {
+					type string;
+					description
+						"Physical Port name on NE";
+				}
+				leaf portnameonems {
+					type string;
+					description
+						"Port Name (EMS/CLI)";
+				}
+				leaf portnumber {
+					type string;
+					description
+						"Port Number";
+				}
+				leaf side {
+					type string;
+					description
+						"Front/Rear";
+				}
+				leaf connector {
+					type string;
+					description
+						"Type of connector ";
+				}
+				leaf tptype {
+					type string;
+					description
+						"tp type";
+				}
+				leaf bandwidth {
+					type string;
+					description
+						"Bandwidth";
+				}
+				leaf digitalwrap {
+					type string;
+					description
+						"Digital Wrap";
+				}
+				leaf channelization {
+					type string;
+					description
+						"Channelization";
+				}
+				leaf status {
+					type string;
+					description
+						"Status";
+				}
+				leaf relationtype {
+					type string;
+					description
+						"Relation Type";
+				}
+				leaf relatedport {
+					type string;
+					description
+						"Related Port";
+				}
+				leaf parentportname {
+					type string;
+					description
+						"Parent Port Name";
+				}
+				leaf dualconnname {
+					type string;
+					description
+						"Dual Conn Name";
+				}
+				leaf dualconnindicator {
+					type string;
+					description
+						"Dual Conn Indicator";
+				}
+				leaf direction {
+					type string;
+					description
+						"Direction";
+				}
+				leaf description {
+					type string;
+					description
+						"Description";
+				}
+				leaf aid {
+					type string;
+					description
+						"AID";
+				}
+				leaf formula {
+					type string;
+					description
+						"Formula";
+				}
+
+				uses spatialproperties;
+
+			}
+		}
+	}
+
+	grouping slotdetails
+	{  
+		container slots {
+			description
+				"Slots on the component";
+
+			list slot {
+				key "name";
+				description
+					"List of slots";
+
+				leaf name {
+					type string;
+					description
+						"Slot identifier";
+				}
+				leaf logicalslotname {
+					type string;
+					description
+						"Logical Slot Name (EMS/CLI)";
+				}
+				leaf slotnumber {
+					type string;
+					description
+						"Slot Number";
+				}
+				leaf barcodeslotposition {
+					type string;
+					description
+						"Bar Code Slot Position";
+				}
+				leaf side {
+					type string;
+					description
+						"Front/Rear";
+				}
+				leaf orientation {
+					type string;
+					description
+						"Slot Orientation (Veritial/Horizontal/Inverted)";
+				}
+				leaf description {
+					type string;
+					description
+						"Description of Slot";
+				}
+				leaf purpose {
+					type string;
+					description
+						"Purpose of Slot";
+				}
+				uses spatialproperties;
+				list cards {
+					key "name";
+					description
+						"List of cards supported in this slots";
+					leaf name {
+					    type string;
+					    description
+					         "name of card";
+					}
+					leaf card {
+					
+						type leafref {
+							path "/oc-platform:components/oc-platform:component/oc-platform:config/oc-platform:name";
+
+						}
+						
+					}
+				}
+
+			}
+		}
+	}
+
+    grouping componentdetails
+	{
+	   container model
+	   {
+	      leaf templatename
+	      {
+	          type string;
+		  description "Template Name";
+	      }
+	      leaf facing
+	      {
+	          type string;
+		  description "front or rear facing";
+	      }
+	      leaf containedtemplate
+	      {
+	          type string;
+		  description "Template Name of the container e.g Rack in case of shelf";
+	      }
+	      leaf partnumber 
+	      {
+	          type string;
+		  description "Part Number";
+	      }
+	      leaf materialid
+	      {
+	          type string;
+		  description "Material Id";
+	      }
+	      leaf sapcode 
+	      {
+	          type string;
+		  description "SAP Code";
+	      }
+	      leaf clei_7
+	      {
+	          type string;
+		  description "CLEI Code";
+	      }
+	      leaf manufacturer
+	      {
+	          type string;
+		  description "Manufacturer";
+	      }
+	      leaf componenttype
+	      {
+	          type string;
+		  description "Category/Equip Type Model Name";
+	      }
+	      leaf status
+	      {
+	          type string;
+		  description "Status of the component";
+	      }
+	      leaf aidformula
+	      {
+	          type string;
+		  description "AID Formula";
+	      }
+	      leaf aidrule
+	      {
+	          type string;
+		  description "AID Rule";
+	      }
+	      leaf description
+	      {
+	          type string;
+		  description "Description";
+	      }
+	      leaf numberofports
+	      {
+	          type string;
+		  description "Number of Ports";
+	      }
+		  
+	      uses spatialproperties;
+          uses slotdetails;
+		  uses portdetails;
+	    }
+	}
+
+
+	augment "/oc-platform:components/oc-platform:component" { 
+		description
+			"Addition of data nodes for needs of vz.";
+		uses componentdetails;
+	}
+
+}

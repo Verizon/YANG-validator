@@ -1,0 +1,204 @@
+module vz-udm-alarm.model.ut {
+    namespace "urn:onf:params:xml:ns:yang:vz-udm-alarm.model.ut";
+    prefix vz;
+
+    import openconfig-alarm-types {
+        prefix "oc-alarm-types";
+    }
+
+    import openconfig-system {
+        prefix "oc-system";
+    }
+    import vz-udm-alarm.model.ut-types {
+        prefix "vz-al-types";
+    }
+    organization "vz";
+    contact "WG Web: <mailto:xyz.jk.com>";
+    description "this is a sample";
+    revision 2018-07-02 {
+        description "Initial version";
+        reference "A data Model for vz";
+    }
+    grouping alarm_augment
+    {
+        leaf alarm_ref_id {
+            type string;
+            default "not applicable";
+            description
+                "Alarm Reference Id in the Alarm inventory";
+            reference
+                "Alarm Reference Id in the Alarm inventory";
+        }
+
+       leaf type {
+            type identityref {
+                     base vz-al-types:TYPE_ID;
+                   }
+            description
+                "Type alarm or event";
+            reference
+                "ALM/EVT";
+        }
+       leaf class {
+            type string;
+            default "not applicable";
+            description
+                "Alarm Class";
+            reference
+                "Alarm Class generate the alarm/event";
+        }
+       leaf equipment {
+            type string;
+            default "not applicable";
+            description
+                "Component generating the Alarm";
+            reference
+                "Component generating the Alarm";
+        }
+       leaf AID {
+            type string;
+            default "not applicable";
+            description
+                "Component location in the equipment";
+            reference
+                "Component location in the equipment";
+        }
+       leaf condition_type {
+            type string;
+            default "not applicable";
+            description
+                "Type of condition causing the alarm";
+            reference
+                "Type of condition causing the alarm";
+        }
+       leaf location {
+            type identityref {
+                 base vz-al-types:LOCATION;
+            }
+            description
+                "Far end or near end of the alarm/event";
+            reference
+                "Far end or near end of the alarm/event";
+        }
+       leaf direction {
+            type identityref {
+                 base vz-al-types:DIRECTION;
+            }
+            description
+                "Receiving /Transmitting or both";
+            reference
+                "Receiving /Transmitting or both";
+        }
+
+       leaf HiSeverityNotificationCode {
+            type string;
+            default "not applicable";
+            description
+                "High Severity Notification Code";
+            reference
+                "High Severity Notification Code";
+        }
+       leaf LoSeverityNotificationCode {
+            type string;
+            default "not applicable";
+            description
+                "Low Severity Notification Code";
+            reference
+                "Low Severity Notification Code";
+        }
+       leaf ServiceEffect {
+            type string;
+            default "not applicable";
+            description
+                "Effect of Alarm on Service";
+            reference
+                "Effect of Alarm on Service";
+        }
+       leaf CardType {
+            type string;
+            default "not applicable";
+            description
+                "Type of Card";
+            reference
+                "Type of Card";
+        }
+       leaf MACAddress {
+            type string;
+            default "not applicable";
+            description
+                "MAC Address of Device";
+            reference
+                "MAC Address of Device";
+        }
+       leaf IPAddress {
+            type string;
+            default "not applicable";
+            description
+                "IP Address of Device";
+            reference
+                "IP Address of Device";
+        }
+       leaf deviceName {
+            type string;
+            default "not applicable";
+            description
+                "Name of Device";
+            reference
+                "Name of Device";
+        }
+       leaf rawAlarmText {
+            type string;
+            default "not applicable";
+            description
+                "Raw Alarm Text";
+            reference
+                "Raw Alarm Text";
+        }
+       leaf time-created-str {
+            type string;
+            default "not applicable";
+            description
+                "Time the alarm was created in the NE, Openconfig support nanoseconds since epoch, but devices return in milliseconds at the most";
+            reference
+                "Time the alarm was created in the NE, Openconfig support nanoseconds since epoch, but devices return in milliseconds at the most";
+        }
+       leaf metaData {
+            type string;
+            default "not applicable";
+            description
+                "Universal Collection Gateway (UGC) meta data required by upstream systems";
+            reference
+                "Universal Collection Gateway (UGC) meta data required by upstream systems";
+        }
+   }
+
+
+  identity INFO {
+      base oc-alarm-types:OPENCONFIG_ALARM_SEVERITY;
+          description
+	        "Indicates that the severity level is informationation only.
+		      This level SHOULD be avoided.";
+   }
+
+  identity ERROR {
+      base oc-alarm-types:OPENCONFIG_ALARM_SEVERITY;
+          description
+	        "Indicates that the severity level is informationation only.
+		      This level SHOULD be avoided.";
+   }
+
+  identity CLEARED {
+      base oc-alarm-types:OPENCONFIG_ALARM_SEVERITY;
+          description
+	        "Indicates that the severity level in Cleared status.
+		      This level SHOULD be avoided.";
+   }
+
+
+    augment "/oc-system:system/oc-system:alarms/oc-system:alarm/oc-system:state" { 
+        description
+            "Addition of data nodes for needs of vz.";
+        uses alarm_augment;
+    }
+
+}

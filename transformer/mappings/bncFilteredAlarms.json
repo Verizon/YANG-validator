@@ -1,0 +1,122 @@
+{
+  "modelName": "bnc-filtered-alarms",
+  "pyangObj": "bnc_filtered_alarms",
+  "rootNode": "bncFilteredAlarm",
+  "alarm": {
+    "tag": "data",
+    "type": "list",
+    "key": "id",
+    "keys": {
+      "id": {
+        "tag": "id",
+        "type": "string"
+      },
+      "type": {
+        "tag": "type",
+        "type": "string"
+      },
+      "attributes": {
+        "tag": "attributes",
+        "type": "grouping",
+        "grouping": {
+          "id": {
+            "tag": "id",
+            "type": "string"
+          },
+          "alarmId": {
+            "tag": "alarm-id",
+            "type": "string"
+          },
+          "nodeId": {
+            "tag": "node-id",
+            "type": "string"
+          },
+          "raAlarmId": {
+            "tag": "ra-alarm-id",
+            "type": "string"
+          },
+          "nodeType": {
+            "tag": "node-type",
+            "type": "string"
+          },
+          "state": {
+            "tag": "state",
+            "type": "string"
+          },
+          "resourceId": {
+            "tag": "resource-id",
+            "type": "string"
+          },
+          "nativeConditionType": {
+            "tag": "native-condition-type",
+            "type": "string"
+          },
+          "conditionSeverity": {
+            "tag": "condition-severity",
+            "type": "string"
+          },
+          "serviceAffecting": {
+            "tag": "service-affecting",
+            "type": "string"
+          },
+          "manualClearable": {
+            "tag": "manual-clearable",
+            "type": "string"
+          },
+          "additionalText": {
+            "tag": "additional-text",
+            "type": "string"
+          },
+          "firstRaiseTime": {
+            "tag": "first-raise-time",
+            "type": "string"
+          },
+          "lastRaiseTime": {
+            "tag": "last-raise-time",
+            "type": "string"
+          },
+          "numberOfOccurrences": {
+            "tag": "number-of-occurrences",
+            "type": "int"
+          },
+          "acknowledgeState": {
+            "tag": "acknowledge-state",
+            "type": "string"
+          },
+          "deviceId": {
+            "tag": "device-id",
+            "type": "string"
+          },
+          "deviceName": {
+            "tag": "device-name",
+            "type": "string"
+          },
+          "deviceLongName": {
+            "tag": "device-long-name",
+            "type": "string"
+          },
+          "ipAddress": {
+            "tag": "ip-address",
+            "type": "string"
+          },
+          "macAddress": {
+            "tag": "mac-address",
+            "type": "string"
+          },
+          "cardType": {
+            "tag": "card-type",
+            "type": "string"
+          },
+          "fic": {
+            "tag": "fic",
+            "type": "string"
+          },
+          "partition": {
+            "tag": "partition",
+            "type": "string-list"
+          }
+        }
+      }
+    }
+  }
+}

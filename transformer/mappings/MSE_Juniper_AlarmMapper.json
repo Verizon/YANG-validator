@@ -1,0 +1,54 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "basetransformer": "TransformJuniperAlarm.TransformJuniperAlarm.transform",
+    "alarms": {
+        "tag": "data",
+        "type": "grouping",
+        "grouping": {
+            "alarm": {
+                "tag": "data",
+                "type": "stringx",
+                "key": "id",
+                "keys": {
+                    "id": {
+                        "tag": "timestamp",
+                        "type": "string"
+                    },
+                    "state": {
+                        "tag": "attributesx",
+                        "type": "grouping",
+                        "grouping": {
+                            "time-created-str": {
+                                "tag": "__timestamp__",
+                                "type": "string",
+				"convert": "convert2"
+                            },
+                            "text": {
+                                "tag": "message",
+                                "type": "string"
+                            },
+                            "severity": {
+                                "tag": "ROOT->priority",
+                                "type": "string"
+                            },
+                            "deviceName": {
+                                "tag": "hostname",
+                                "type": "string"
+                            },
+                            "rawAlarmText": {
+                                "tag": "mac-address",
+                                "type": "rawAlarmText"
+                            },
+                            "ucg-type": {
+                                "tag": "type",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

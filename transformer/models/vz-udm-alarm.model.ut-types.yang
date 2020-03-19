@@ -1,0 +1,92 @@
+module vz-udm-alarm.model.ut-types {
+
+  yang-version "1";
+
+  // namespace
+  namespace "urn:onf:params:xml:ns:yang:vz-udm.alarm.model.ut-types";
+
+
+  prefix "ut-types";
+
+  // meta
+  organization "Vz working group";
+
+  contact
+    "VZ working group
+    www.openconfig.net";
+
+  description
+    "This model represents all the Augmented Alarm Types ";
+
+
+  // identity statements
+  identity TYPE_ID {
+    description
+      "Base identity for type";
+  }
+
+  identity EVENT {
+    base TYPE_ID;
+    description
+      "Defines an Event";
+  }
+
+  identity ALARM {
+    base TYPE_ID;
+    description
+      "Defines an Alarm";
+  }
+
+
+  // Location of alarm
+  identity LOCATION {
+    description
+      "Base identity for location of alarm";
+  }
+
+  identity FEND {
+    base LOCATION;
+    description
+       "Far End";
+  }
+  identity NEND {
+    base LOCATION;
+    description
+       "Near End";
+  }
+  identity NOFIELD {
+    base LOCATION;
+    description
+       "No Field";
+  }
+  // Direction of alarm
+  identity DIRECTION {
+    description
+      "Base identity for Direction of alarm";
+  }
+  identity BTH {
+    base DIRECTION;
+    description
+       "Both";
+  }
+  identity NA {
+    base DIRECTION;
+    description
+       "Not Applicable";
+  }
+  identity NOFIELD_ {
+    base DIRECTION;
+    description
+       "No Field";
+  }
+  identity RCV {
+    base DIRECTION;
+    description
+       "Receiving";
+  }
+  identity TRMT {
+    base DIRECTION;
+    description
+       "Transmitting";
+  }
+}

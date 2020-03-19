@@ -1,0 +1,75 @@
+{
+  "modelName": "samsung_cpe_perfdata_udm",
+  "pyangObj": "samsung_yang",
+  "rootNode": "perfdata",
+  "eventTime": {
+    "tag": "eventTime",
+    "type": "string"
+  },
+  "annotatedFamilyId": {
+    "tag": "annotatedFamilyId",
+    "type": "string"
+  },
+  "neId": {
+    "tag": "neId",
+    "type": "string"
+  },
+  "neType": {
+    "tag": "neType",
+    "type": "string"
+  },
+  "familyId": {
+    "tag": "familyId",
+    "type": "int"
+  },
+  "neVersion": {
+    "tag": "neVersion",
+    "type": "string"
+  },
+  "indexData": {
+    "tag": "indexes",
+    "type": "list",
+    "key": "indexId",
+    "keys": {
+      "indexId": {
+        "tag": "indexId",
+        "type": "int"
+      },
+      "indexName": {
+        "tag": "indexName",
+        "type": "string"
+      },
+      "indexValue": {
+        "tag": "indexValue",
+        "type": "string"
+      }
+    }
+  },
+  "payloadData": {
+    "tag": "data",
+    "type": "list",
+    "key": "typeId",
+    "keys": {
+      "typeId": {
+        "tag": "typeId",
+        "type": "int"
+      },
+      "valueUnit": {
+        "tag": "valueUnit",
+        "type": "string"
+      },
+      "typeValue": {
+        "tag": "typeValue",
+        "type": "string"
+      },
+      "valueType": {
+        "tag": "valueType",
+        "type": "string"
+      },
+      "typeName": {
+        "tag": "typeName",
+        "type": "string"
+      }
+    }
+  }
+}

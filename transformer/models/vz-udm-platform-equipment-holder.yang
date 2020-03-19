@@ -1,0 +1,84 @@
+module vz-udm-platform-equipment-holder {
+	namespace "urn:onf:params:xml:ns:yang:vz-udm-platform-equipment-holder";
+	prefix vz-holder;
+
+	import openconfig-platform {
+		prefix "oc-platform";
+	}
+	organization "Verizon";
+	contact "WG Web: <mailto:xyz.jk.com>";
+	description "model to describe the physical equipment holder";
+	revision 2019-07-11 {
+		description "Initial version";
+		reference "Initial Release";
+	}
+
+	grouping slotdetails
+	{  
+		container slots {
+			description
+				"Slots on the component";
+
+			list slot {
+				key "name";
+				description
+					"List of slots";
+
+				leaf name {
+					type string;
+					description
+						"Slot identifier";
+				}
+				leaf slotnumber {
+					type string;
+					description
+						"Slot Number";
+				}
+				list component {
+					key "name";
+					description
+						"List of components in this slots";
+					leaf name {
+					    type string;
+					    description
+					         "name of component";
+					}
+					leaf component {
+					
+						type leafref {
+							path "/oc-platform:components/oc-platform:component/oc-platform:config/oc-platform:name";
+
+						}
+					}
+					leaf subslot {
+					    type string;
+					    description
+					         "subslot";
+					}
+					leaf subslotname {
+					    type string;
+					    description
+					         "subslot Name";
+					}
+						
+				}
+
+			}
+		}
+	}
+
+        grouping componentdetails
+	{
+	   container holder 
+	   {
+               uses slotdetails;
+	   }
+	}
+
+	augment "/oc-platform:components/oc-platform:component" { 
+		description
+			"Addition of data nodes for needs of vz.";
+		uses componentdetails;
+	}
+
+}

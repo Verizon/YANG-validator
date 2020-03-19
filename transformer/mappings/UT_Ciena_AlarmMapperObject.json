@@ -1,0 +1,88 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "alarms": {
+        "tag": "dummy",
+        "type": "grouping",
+        "grouping": {
+            "alarm": {
+                "tag": "data",
+                "type": "stringx",
+                "key": "id",
+                "keys": {
+                    "id": {
+                        "tag": "id",
+                        "type": "string"
+                    },
+                    "state": {
+                        "tag": "attributes",
+                        "type": "grouping",
+                        "grouping": {
+                            "id": {
+                                "tag": "id",
+                                "type": "string"
+                            },
+                            "time-created-str": {
+                                "tag": "first-raise-time",
+                                "type": "string"
+                            },
+                            "direction": {
+                                "tag": "additional-attrs->direction",
+                                "type": "string"
+                            },
+                            "text": {
+                                "tag": "additional-text",
+                                "type": "string"
+                            },
+                            "ServiceEffect": {
+                                "tag": "service-affection",
+                                "type": "string"
+                            },
+                            "resource": {
+                                "tag": "resource",
+                                "type": "string"
+                            },
+                            "severity": {
+                                "tag": "condition-severity",
+                                "type": "string"
+                            },
+                            "IPAddress": {
+                                "tag": "ip-address",
+                                "type": "string"
+                            },
+                            "deviceName": {
+                                "tag": "device-name",
+                                "type": "string"
+                            },
+                            "MACAddress": {
+                                "tag": "mac-address",
+                                "type": "string"
+                            },
+                            "rawAlarmText": {
+                                "tag": "mac-address",
+                                "type": "rawAlarmText"
+                            },
+                            "location": {
+                                "tag": "additional-attrs->location",
+                                "type": "string"
+                            },
+                            "alarm_ref_id": {
+                                "tag": "ra-alarm-id",
+                                "type": "string"
+                            },
+                            "AID": {
+                                "tag": "additional-attrs->aidtype",
+                                "type": "string"
+                            },
+                            "metaData": {
+                                "tag": "dont-care-about-tag",
+                                "type": "metaData"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

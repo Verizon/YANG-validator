@@ -1,0 +1,110 @@
+{
+    "modelName": "openconfig-platform",
+    "pyangObj": "openconfig_platform",
+    "rootNode": "components",
+    "component": {
+        "tag": "properties",
+        "type": "stringx",
+		"key": "name",
+		"keys": {
+		    "name":
+			{
+			   "tag": "NAME->value",
+			   "type": "string"
+			},
+			"config":{
+			   "tag": "dummy",
+			   "type": "grouping",
+			   "grouping": {
+			     "name": 
+				 {
+				   "tag": "NAME->value",
+				   "type": "string"
+				 }
+			   }
+			},
+			"state":{
+			   "tag": "dummy",
+			   "type": "grouping",
+			   "grouping": {
+			     "name": 
+				 {
+				   "tag": "NAME->value",
+				   "type": "string"
+				 },
+				 "location": 
+				 {
+				   "tag": "LOCATION_CLLI->value",
+				   "type": "string"
+				 },
+				 "serial-no": 
+				 {
+				   "tag": "SERIAL_NUMBER->value",
+				   "type": "string"
+				 },
+				 "part-no": 
+				 {
+				   "tag": "PART_NUM->value",
+				   "type": "string"
+				 },
+				 "mfg-name": 
+				 {
+				   "tag": "EQP_MANUFACTURER->value",
+				   "type": "string"
+				 }
+			   }
+			},
+			"model":{
+			   "tag": "dummy",
+			   "type": "grouping",
+			   "grouping": {
+			     "partnumber": 
+				 {
+				   "tag": "PART_NUM->value",
+				   "type": "string"
+				 },
+				 "aidformula": 
+				 {
+				   "tag": "AID->value",
+				   "type": "string"
+				 },
+				 "materialid": 
+				 {
+				   "tag": "MATERIAL_ID->value",
+				   "type": "string"
+				 },
+				 "manufacturer": 
+				 {
+				   "tag": "EQP_MANUFACTURER->value",
+				   "type": "string"
+				 },
+				 "description": 
+				 {
+				   "tag": "EQUIPMENT_SPEC_NAME->value",
+				   "type": "string"
+				 },
+				 "componenttype": 
+				 {
+				   "tag": "EQP_TYPE->value",
+				   "type": "string"
+				 },
+				 "depth": 
+				 {
+				   "tag": "EQP_DEPTH->value",
+				   "type": "string"
+				 },
+				 "height": 
+				 {
+				   "tag": "EQP_HEIGHT->value",
+				   "type": "string"
+				 },
+				 "width": 
+				 {
+				   "tag": "EQP_WIDTH->value",
+				   "type": "string"
+				 }
+			   }
+			}
+		}
+     }
+}

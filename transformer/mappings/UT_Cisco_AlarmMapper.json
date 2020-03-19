@@ -1,0 +1,77 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "alarms": {
+        "tag": "dummy",
+        "type": "grouping",
+        "grouping": {
+            "alarm": {
+                "tag": "push.push-change-update",
+                "type": "stringx",
+                "key": "id",
+                "keys": {
+                    "id": {
+                        "tag": "push.notification-id",
+                        "type": "string"
+                    },
+                    "state": {
+                        "tag": "push.update-data->alm.alarm",
+                        "type": "grouping",
+                        "grouping": {
+                            "id": {
+                                "tag": "ROOT->push.push-change-update->push.notification-id",
+                                "type": "string"
+                            },
+                            "time-created-str": {
+                                "tag": "alm.system-received-time",
+                                "type": "string"
+                            },
+                            "text": {
+                                "tag": "alm.description",
+                                "type": "string"
+                            },
+                            "ServiceEffect": {
+                                "tag": "service-affection",
+                                "type": "string"
+                            },
+                            "resource": {
+                                "tag": "alm.source-object-ref",
+                                "type": "string"
+                            },
+                            "severity": {
+                                "tag": "alm.perceived-severity",
+                                "type": "string",
+                                "convert": "upper"
+                            },
+                            "IPAddress": {
+                                "tag": "alm.remote-interface-ip-address",
+                                "type": "string"
+                            },
+                            "deviceName": {
+                                "tag": "alm.node-ref",
+                                "type": "string"
+                            },
+                            "MACAddress": {
+                                "tag": "mac-address",
+                                "type": "string"
+                            },
+                            "rawAlarmText": {
+                                "tag": "mac-address",
+                                "type": "rawAlarmText"
+                            },
+                            "alarm_ref_id": {
+                                "tag": "alm.alarm-identifier->alm.event-identifier",
+                                "type": "string"
+                            },
+                            "AID": {
+                                "tag": "additional-attrs->aidtype",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
