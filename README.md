@@ -6,6 +6,14 @@ yang-validator is also used in conjuction with jtransformer.   jtransformer can 
 
 When developing on macos there is a challenge with connecting to localhost for nameko to rabbitmq.   Edit config.yaml to specify the ip address of the location of rabbitmq.
 
+Tested Versions
+===============
+Python 3.7.3
+nameko 2.12.0
+pyang 2.0.1
+pyangbind 0.8.1
+
+
 Mapping Files
 =============
 All mapping files are contained in transformer/mappings directory.   These files explain how to go from a propietary JSON to OpenConfig.
@@ -52,6 +60,4 @@ Stop the container
 ==================
 docker stop 9158083d86fa
 
-Test
-====
 
