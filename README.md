@@ -2,7 +2,7 @@ yang-validator
 ==============
 The yang-validator project utilizes pyang to provide a method for assisting equipment vendors to utilize OpenConfig YANG JSON for existing platforms that are not already OpenConfig.     yang-validator also utilizes nameko and rabbitmq to provide a microservice for validating JSON messages are infact OpenConfig compliant.
 
-yang-validator is also used in conjuction with jtransformer.   jtransformer can be found at: https://git.ouroath.com/rtorres02/jtransformer.      jtransformer can be used for making the actual transformations from none OpenConfig compliant YANG to OpenConfig compliant YANG using the mappings from this project.
+yang-validator is also used in conjuction with jtransformer.   jtransformer can be found at: https://github.com/Verizon/YANG-transformer.      jtransformer can be used for making the actual transformations from none OpenConfig compliant YANG to OpenConfig compliant YANG using the mappings from this project.
 
 When developing on macos there is a challenge with connecting to localhost for nameko to rabbitmq.   Edit config.yaml to specify the ip address of the location of rabbitmq.
 
