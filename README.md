@@ -10,7 +10,7 @@ Tested Versions
 ===============
 * Python 3.7.3
 * nameko 2.12.0  pip install 'nameko==2.12.0'
-* pyang 2.0.1 .  pip install 'pyang==2.0.1'
+* pyang 2.0.1   pip install 'pyang==2.0.1'
 * pyangbind 0.8.1 pip install 'pyangbind==0.8.1'
 
 
