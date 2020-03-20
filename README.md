@@ -8,10 +8,10 @@ When developing on macos there is a challenge with connecting to localhost for n
 
 Tested Versions
 ===============
-Python 3.7.3
-nameko 2.12.0
-pyang 2.0.1
-pyangbind 0.8.1
+* Python 3.7.3
+* nameko 2.12.0  pip install 'nameko==2.12.0'
+* pyang 2.0.1 .  pip install 'pyang==2.0.1'
+* pyangbind 0.8.1 pip install 'pyangbind==0.8.1'
 
 
 Mapping Files
@@ -38,6 +38,8 @@ docker run --rm -it -p 8000:8000 transformer
 Run in the background
 =====================
 docker run -d --rm -it -p 8000:8000 transformer
+
+__Note: There is an issue on MacOS with Docker calling localhost or 127.0.0.1.   You must use your ip address with the transformer to invoke rabittmq.    You edit that ip address in the YAML file__
 
 Test the Validator
 ==================
