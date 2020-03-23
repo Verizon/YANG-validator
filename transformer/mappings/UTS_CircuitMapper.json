@@ -1,0 +1,8 @@
+{
+    "_comment": "this is a dummy file used to invoke the UTSCircuitWalk",
+    "modelName": "ietf-network-topology",
+    "pyangObj": "ietf_network_topology",
+    "rootNode": "networks",
+    "network": {
+     }
+}

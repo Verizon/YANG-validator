@@ -1,0 +1,6 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "basetransformer": "TransformJuniperPerf.TransformJuniperPerf.transform"
+}

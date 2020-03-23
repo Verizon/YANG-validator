@@ -4,7 +4,7 @@
     "rootNode": "components",
     "component": {
         "tag": "properties",
-        "type": "stringx",
+        "type": "list",
 		"key": "name",
 		"keys": {
 		    "name":

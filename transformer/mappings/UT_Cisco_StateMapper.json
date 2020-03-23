@@ -2,6 +2,7 @@
     "modelName": "openconfig-system",
     "pyangObj": "openconfig_system",
     "rootNode": "system",
+    "basetransformer": "TransformCiscoState.TransformCiscoState.transform",
     "alarms": {
         "tag": "dummy",
         "type": "grouping",
@@ -12,27 +13,23 @@
                 "key": "id",
                 "keys": {
                     "id": {
-                        "tag": "id",
+                        "tag": "data->collection_id",
                         "type": "string"
                     },
                     "state": {
-                        "tag": "attributes",
+                        "tag": "data",
                         "type": "grouping",
                         "grouping": {
                             "id": {
-                                "tag": "id",
+                                "tag": "ROOT->push.push-change-update->push.notification-id",
                                 "type": "string"
                             },
                             "time-created-str": {
-                                "tag": "first-raise-time",
-                                "type": "string"
-                            },
-                            "direction": {
-                                "tag": "additional-attrs->direction",
+                                "tag": "current_date_time",
                                 "type": "string"
                             },
                             "text": {
-                                "tag": "additional-text",
+                                "tag": "alm.description",
                                 "type": "string"
                             },
                             "ServiceEffect": {
@@ -40,19 +37,15 @@
                                 "type": "string"
                             },
                             "resource": {
-                                "tag": "resource",
-                                "type": "string"
-                            },
-                            "severity": {
-                                "tag": "condition-severity",
+                                "tag": "alm.source-object-ref",
                                 "type": "string"
                             },
                             "IPAddress": {
-                                "tag": "ip-address",
+                                "tag": "alm.remote-interface-ip-address",
                                 "type": "string"
                             },
                             "deviceName": {
-                                "tag": "device-name",
+                                "tag": "node_id_str",
                                 "type": "string"
                             },
                             "MACAddress": {
@@ -63,21 +56,13 @@
                                 "tag": "mac-address",
                                 "type": "rawAlarmText"
                             },
-                            "location": {
-                                "tag": "additional-attrs->location",
-                                "type": "string"
-                            },
                             "alarm_ref_id": {
-                                "tag": "ra-alarm-id",
+                                "tag": "alm.alarm-identifier->alm.event-identifier",
                                 "type": "string"
                             },
                             "AID": {
                                 "tag": "additional-attrs->aidtype",
                                 "type": "string"
-                            },
-                            "metaData": {
-                                "tag": "dont-care-about-tag",
-                                "type": "metaData"
                             }
                         }
                     }

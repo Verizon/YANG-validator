@@ -31,3 +31,11 @@ class toYangJsonSvc:
     yangJsonStr = jsonToYang.validateYang(mappingDetails, jsonStr) 
 
     return yangJsonStr 
+
+  @http('GET', '/getMappingDetails')
+  def getMappingDetails(self, request):
+    return self.getAllMappingDetails()
+
+  @rpc
+  def getAllMappingDetails(self):
+    return jsonToYang.getAllMappingDetails() 

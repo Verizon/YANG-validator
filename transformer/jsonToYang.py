@@ -30,6 +30,24 @@ topicModelMapping = [
 loadedMaps = []
 rootJson  = None
 
+def getAllMappingDetails():
+  global topicModelMapping
+
+  mapList = []
+
+  for mappingInfo in topicModelMapping:
+    # Load mapping file
+    mappingObj = loadMappingFile(mappingInfo['mappingFile'])
+
+    mappingDetails = dict()
+    mappingDetails['topic'] = mappingInfo['topic']
+    mappingDetails['mappingObj'] = mappingObj
+    mappingDetails['isEquipmentTopic'] = mappingInfo['isEquipmentTopic']
+
+    mapList.append(mappingDetails)
+
+  return json.dumps(mapList)
+
 def getMappingDetails(topic):
   global loadedMaps
   global topicModelMapping
