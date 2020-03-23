@@ -20,8 +20,5 @@ When your code is ready to be submitted, submit a pull request to begin the code
 
 We only seek to accept code that you are authorized to contribute to the project. We have added a pull request template on our projects so that your contributions are made with the following confirmation:
 
-I confirm that this contribution is made under the terms of the license found in the root directory of this repository's source tree and that I have the authority necessary to make this contribution on behalf of its copyright owner.
+_I confirm that this contribution is made under the terms of the license found in the root directory of this repository's source tree and that I have the authority necessary to make this contribution on behalf of its copyright owner._
 
-Code of Conduct
-===============
-We encourage inclusive and professional interactions on our project. We welcome everyone to open an issue, improve the documentation, report bug or ssubmit a pull request. By participating in this project, you agree to abide by the Verizon Media Code of Conduct. If you feel there is a conduct issue related to this project, please raise it per the Code of Conduct process and we will address it.
