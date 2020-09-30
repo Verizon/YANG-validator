@@ -1,0 +1,67 @@
+{
+    "modelName": "openconfig-system",
+    "pyangObj": "openconfig_system",
+    "rootNode": "system",
+    "alarms": {
+        "tag": "dummy",
+        "type": "grouping",
+        "grouping": {
+            "alarm": {
+                "tag": "data",
+                "type": "list",
+                "key": "id",
+                "keys": {
+                    "id": {
+                        "tag": "ROOT->@timereported",
+                        "type": "string"
+                    },
+                    "state": {
+                        "tag": "attributes",
+                        "type": "grouping",
+                        "grouping": {
+                            "id": {
+                                "tag": "ROOT->@timereported",
+                                "type": "string"
+                            },
+                            "time-created-str": {
+                                "tag": "ROOT->@timereported",
+                                "type": "string"
+                            },
+                             "text": {
+                                "tag": "ROOT->message",
+                                "type": "string"
+                            },
+                            "resource": {
+                                "tag": "ROOT->deviceName",
+                                "type": "string"
+                            },
+                            "severity": {
+                                "tag": "ROOT->severity",
+                                "type": "string",
+								"convert": "map",
+								"mapname": "sev",
+								"maplist": "5=WARNING,1=INFO,2=DEBUG,def=ERROR"
+                            },
+                            "IPAddress": {
+                                "tag": "ROOT->sourceIpAddress",
+                                "type": "string"
+                            },
+                            "deviceName": {
+                                "tag": "ROOT->deviceName",
+                                "type": "string"
+                            },
+                            "rawAlarmText": {
+                                "tag": "mac-address",
+                                "type": "rawAlarmText"
+                            },
+                            "location": {
+                                "tag": "ROOT->facility",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

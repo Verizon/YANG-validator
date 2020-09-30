@@ -2,18 +2,18 @@
 	"modelName": "openconfig-system",
 	"pyangObj": "openconfig_system",
 	"rootNode": "system",
-	"basetransformer": "TransformJuniperAlarm.TransformJuniperAlarm.transform",
+	"basetransformer": "TransformCiscoControlPlaneActiveAlarm.TransformCiscoControlPlaneActiveAlarm.transform",
 	"alarms": {
 		"tag": "data",
 		"type": "grouping",
 		"grouping": {
 			"alarm": {
 				"tag": "data",
-				"type": "stringx",
+				"type": "list",
 				"key": "id",
 				"keys": {
 					"id": {
-						"tag": "timestamp",
+						"tag": "id",
 						"type": "string"
 					},
 					"state": {
@@ -21,29 +21,24 @@
 						"type": "grouping",
 						"grouping": {
 							"time-created-str": {
-								"tag": "__timestamp__",
-								"type": "string",
-								"convert": "convert2"
-							},
-							"text": {
-								"tag": "message",
+								"tag": "timestamp",
 								"type": "string"
 							},
-							"deviceName": {
-								"tag": "hostname",
+							"text": {
+								"tag": "text",
+								"type": "string"
+							},
+							"severity": {
+								"tag": "severity",
+								"type": "string"
+							},
+							"resource": {
+								"tag": "resource",
 								"type": "string"
 							},
 							"rawAlarmText": {
 								"tag": "mac-address",
 								"type": "rawAlarmText"
-							},
-							"severity": {
-								"tag": "priority",
-								"type": "string",
-                                                                "convert": "map",
-                                                                "mapname": "sev",
-                                                                "maplist": "5=WARNING,1=INFO,2=DEBUG,def=ERROR"
-
 							},
 							"ucg-type": {
 								"tag": "type",

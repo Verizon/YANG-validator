@@ -1,6 +1,3 @@
-# Copyright Verizon Inc. 
-# Licensed under the terms of the Apache License 2.0 license.  
-# See LICENSE file in project root for terms.
 import sys
 import getopt
 from pyangbind.lib import pybindJSON
@@ -24,7 +21,13 @@ topicModelMapping = [
   {"topic":"MSE_ALARMS_CISCO","mappingFile": "mappings/MSE_Cisco_AlarmMapper.json" , "isEquipmentTopic": "false"},
   {"topic":"MSE_ALARMS_JUNIPER","mappingFile": "mappings/MSE_Juniper_AlarmMapper.json" , "isEquipmentTopic": "false"},
   {"topic":"UTS_EQUIPMENT_API","mappingFile": "mappings/UTS_EquipmentMapper.json" , "isEquipmentTopic": "true"},
-  {"topic":"UTS_CIRCUIT_API","mappingFile": "mappings/UTS_CircuitMapper.json" , "isEquipmentTopic": "false"}
+  {"topic":"UTS_CIRCUIT_API","mappingFile": "mappings/UTS_CircuitMapper.json" , "isEquipmentTopic": "false"},
+  {"topic":"UT_CISCO_STATE","mappingFile": "mappings/UT_Cisco_StateMapper.json" , "isEquipmentTopic": "false"},
+  {"topic":"MSE_PERF_JUNIPER","mappingFile": "mappings/MSE_Juniper_PerfMapper.json" , "isEquipmentTopic": "false"},
+  {"topic":"EPNM_CONTROL_PLANE","mappingFile": "mappings/EPNM_ControlPlaneMapper.json" , "isEquipmentTopic": "false"},
+  {"topic":"EPNM_CONTROL_PLANE_ACTIVE","mappingFile": "mappings/EPNM_ControlPlaneMapperActiveAlarm.json" , "isEquipmentTopic": "false"},
+  {"topic":"SYSLOG_ALARMS","mappingFile": "mappings/Syslog_AlarmMapper.json" , "isEquipmentTopic": "false"}
+
 ]
 
 loadedMaps = []
