@@ -1,3 +1,7 @@
+#
+# Copyright Verizon Inc.
+# Licensed under the terms of the Apache License 2.0 license.  See LICENSE file in project root for terms.
+#
 # -*- coding: utf-8 -*-
 from operator import attrgetter
 from pyangbind.lib.yangtypes import RestrictedPrecisionDecimalType
