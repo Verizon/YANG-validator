@@ -4,8 +4,6 @@
     "rootNode": "system",
     "alarms": {
         "tag": "dummy",
-        "type": "grouping",
-        "grouping": {
             "alarm": {
                 "tag": "push.push-change-update",
                 "type": "list",
